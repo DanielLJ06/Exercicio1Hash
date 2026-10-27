@@ -59,7 +59,7 @@ class ListaEncadeada {
     public void removeElemento(int elemento) {
         if (inicio == null) {
      
-            System.out.println("A lista está vazia.\nNão é possível remover um elemento");
+            System.out.println("Lamento, porém a lista esta vazia");
         } else {
             No atual = inicio;
             if (elemento == inicio.dado) {
@@ -77,7 +77,7 @@ class ListaEncadeada {
                         return;
                     }
                 }
-                System.out.println("O elemento não faz parte da lista.\nNão é possível remover.");
+                System.out.println("Não existe este elemento na lista");
             }
 
 
