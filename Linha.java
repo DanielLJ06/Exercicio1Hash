@@ -58,7 +58,7 @@ class ListaEncadeada {
 
     public void removeElemento(int elemento) {
         if (inicio == null) {
-            // lista vazia
+     
             System.out.println("A lista está vazia.\nNão é possível remover um elemento");
         } else {
             No atual = inicio;
@@ -71,7 +71,7 @@ class ListaEncadeada {
             } else {
                 while (atual.proximo != null) {
                     No anterior = atual;
-                    atual = atual.proximo; // Avança para o próximo nó
+                    atual = atual.proximo; 
                     if (atual.dado == elemento) {
                         anterior.proximo = atual.proximo;
                         return;
@@ -89,7 +89,7 @@ class ListaEncadeada {
         System.out.print("Lista: ");
         while (atual != null) {
             System.out.print(atual.dado + " ");
-            atual = atual.proximo; // Move para o próximo nó
+            atual = atual.proximo; 
         }
         System.out.println();
     }
