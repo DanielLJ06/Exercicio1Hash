@@ -1,28 +1,19 @@
 import java.util.Random;
 
 public class Main {
-
     public static void main(String[] args) {
         Hash hash = new Hash();
-        Random random = new Random(1090);
-        int[] tamanho_d_lista = new int[hash.tabela.length];
+        Random random = new Random();
         int[] ultimos = new int[3];
 
-        for (int i = 0; i < 10001; i++) {
-            int chave = random.nextInt(100001);
-            int indice = hash.funcaoHash(chave);
+        int quantidade = 1000;
+        for (int k = 0; k < quantidade; k++) {
+            int numero = random.nextInt(10000);
+            hash.insere(numero);
 
-            if (hash.tabela[indice] == null) {
-                hash.tabela[indice] = new Linha(chave);
-                hash.tabela[indice].valor = new ListaEncadeada();
-            }
-            hash.tabela[indice].valor.insereOrdenado(chave);
-            tamanho_d_lista[indice]++;
-
-            for (int x = 0; x < 2; x++) {
-                ultimos[x] = ultimos[x + 1];
-            }
-            ultimos[2] = chave;
+            ultimos[0] = ultimos[1];
+            ultimos[1] = ultimos[2];
+            ultimos[2] = numero;
         }
 
         int quantidadeListas = 0;
@@ -32,16 +23,10 @@ public class Main {
 
         for (int i = 0; i < hash.tabela.length; i++) {
             if (hash.tabela[i] == null) {
-                posicoesVazias = posicoesVazias + 1;
-            } else if (hash.tabela[i].valor != null) {
-                quantidadeListas = quantidadeListas + 1;
-                int tamanho = 0;
-                ListaEncadeada.No atual = hash.tabela[i].valor.inicio;
-                while (atual != null) {
-                    tamanho = tamanho + 1;
-                    atual = atual.proximo;
-                }
-
+                posicoesVazias++;
+            } else {
+                quantidadeListas++;
+                int tamanho = hash.tabela[i].valor.contagem();
                 if (tamanho > maiorTamanho) {
                     maiorTamanho = tamanho;
                     indiceMaiorLista = i;
@@ -59,5 +44,13 @@ public class Main {
         System.out.println("Listas geradas: " + quantidadeListas);
         System.out.println("Posições vazias: " + posicoesVazias);
         System.out.println("Últimos inseridos: " + ultimos[0] + ", " + ultimos[1] + ", " + ultimos[2]);
+
+        int chaveBusca = ultimos[2];
+        int pos = hash.busca_hashing(chaveBusca);
+        if (pos != -1) {
+            System.out.println("Chave " + chaveBusca + " encontrada no índice " + pos);
+        } else {
+            System.out.println("Chave " + chaveBusca + " não encontrada");
+        }
     }
 }
