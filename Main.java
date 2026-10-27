@@ -3,12 +3,12 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         Hash hash = new Hash();
-        Random random = new Random();
+        Random random = new Random(1090);
         int[] ultimos = new int[3];
 
         int quantidade = 1000;
         for (int k = 0; k < quantidade; k++) {
-            int numero = random.nextInt(10000);
+            int numero = random.nextInt(100001);
             hash.insere(numero);
 
             ultimos[0] = ultimos[1];
